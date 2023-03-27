@@ -14,7 +14,7 @@ export const Header = () => {
   // state for enabling the navbar dropdown menu when size of the screen reduces
   const [hidden, setHidden] = useState(true);
   // state to switch between light and dark mode
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   // using the useEffect to load the darkmode and light mode action to the browser
   useEffect(() => {
