@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 // paasing the apiPath from the current route
-export const useFetch = (apiPath) => {
+export const useFetch = (apiPath, queryTerm = '') => {
   const [movies, setMovies] = useState([]);
   //   modified url from the apiPath passed
-  const url = `https://api.themoviedb.org/3/${apiPath}?api_key=${process.env.REACT_APP_TILA}`;
+  const url = `https://api.themoviedb.org/3/${apiPath}?api_key=${process.env.REACT_APP_TILA}&query=${queryTerm}`;
   useEffect(() => {
     const fetchMovies = async () => {
       // passing the new apiPath for the route we are calling
