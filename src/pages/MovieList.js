@@ -10,7 +10,7 @@ export const MovieList = ({ apiPath }) => {
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">
-        <div className="flex justify-start flex-wrap">
+        <div className="flex justify-start flex-wrap other:justify-evenly">
           {/* iterating the card element over the movies results */}
           {movies.map((movie) => (
             // key stays as the distinct id of each individual movie object

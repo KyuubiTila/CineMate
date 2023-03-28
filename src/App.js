@@ -4,10 +4,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <AllRoutes />
-      <Footer />
+    <div className="dark:bg-slate-800">
+      <div className="App">
+        <Header />
+        <AllRoutes />
+        <Footer />
+      </div>
     </div>
   );
 }

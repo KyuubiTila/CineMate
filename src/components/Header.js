@@ -6,7 +6,7 @@
 // href changed to "to"
 // a opening and closing tags changed to Link
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Logo from '../assets/logo.png';
 
@@ -15,6 +15,7 @@ export const Header = () => {
   const [hidden, setHidden] = useState(true);
   // state to switch between light and dark mode
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   // using the useEffect to load the darkmode and light mode action to the browser
   useEffect(() => {
@@ -35,6 +36,13 @@ export const Header = () => {
   // setting a dynamic value for the isActive function
   const isNavlinkActive = ({ isActive }) =>
     isActive ? activeClass : inactiveClass;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const queryTerm = event.target.search.value;
+    event.target.reset();
+    return navigate(`/search?q=${queryTerm}`);
+  };
 
   return (
     <header>
@@ -90,7 +98,7 @@ export const Header = () => {
             </button>
 
             <button
-              // changing the usetstate's currents holding state to false when clicked
+              // changing the usetstate's currents holding state for navigate to false when clicked
               onClick={() => setHidden(!hidden)}
               type="button"
               data-collapse-toggle="navbar-search"
@@ -130,16 +138,19 @@ export const Header = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <input
-                type="text"
-                id="search-navbar"
-                className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
-                autoComplete="off"
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="search"
+                  type="text"
+                  id="search-navbar"
+                  className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Search..."
+                  autoComplete="off"
+                />
+              </form>
             </div>
             <button
-              // changing the usetstate's currents holding state to false when clicked
+              // changing the usestate's currents holding state for Navigate to false when clicked
               onClick={() => setHidden(!hidden)}
               data-collapse-toggle="navbar-search"
               type="button"
@@ -185,13 +196,16 @@ export const Header = () => {
                   ></path>
                 </svg>
               </div>
-              <input
-                type="text"
-                id="search-navbar"
-                className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
-                autoComplete="off"
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="search"
+                  type="text"
+                  id="search-navbar"
+                  className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Search..."
+                  autoComplete="off"
+                />
+              </form>
             </div>
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
