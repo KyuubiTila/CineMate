@@ -1,19 +1,23 @@
 import { useSearchParams } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { useFetch } from '../hooks/useFetch';
+import { LoadingSpinner } from '../components';
+// import { useState } from 'react';
 
 export const Search = ({ apiPath }) => {
   const [searchParams] = useSearchParams();
+
   const queryTerm = searchParams.get('q');
-  const { movies } = useFetch(apiPath, queryTerm);
+  const { movies, isLoading } = useFetch(apiPath, queryTerm);
 
   return (
     <main>
       <section className="py-7">
         <p className="text-3xl text-gray-700 dark:text-white">
-          {movies.length === 0
-            ? `No result found for '${queryTerm}'`
-            : `Results for '${queryTerm}'`}
+          {isLoading && <LoadingSpinner />}
+          {movies.length === 0 &&
+            !isLoading &&
+            `No results found for '${queryTerm}'`}
         </p>
       </section>
       <section className="max-w-7xl mx-auto py-7">
